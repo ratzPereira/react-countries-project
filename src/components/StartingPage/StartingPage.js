@@ -5,7 +5,7 @@ import world from "../../assets/world.jpeg";
 const StartingPage = () => {
   return (
     <section className={classes.starting}>
-      <h1>Welcome to countries App!</h1>
+      <h1>Get Started!</h1>
       <div className={classes["main-image"]}>
         <img src={world} alt="background" />
       </div>
