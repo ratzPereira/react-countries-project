@@ -13,19 +13,19 @@ function App() {
           <HomePage />
         </Route>
         <Route path="/africa">
-          <Region>Africa</Region>
+          <Region region="africa">Africa</Region>
         </Route>
         <Route path="/americas">
-          <Region>Americas</Region>
+          <Region region="americas">Americas</Region>
         </Route>
         <Route path="/asia">
-          <Region>Asia</Region>
+          <Region region="asia">Asia</Region>
         </Route>
         <Route path="/europe">
-          <Region>Europe</Region>
+          <Region region="europe">Europe</Region>
         </Route>
         <Route path="/oceania">
-          <Region>Oceania</Region>
+          <Region region="oceania">Oceania</Region>
         </Route>
         <Route path="/country/:name" children={<SingleCountry />} />
       </Switch>
