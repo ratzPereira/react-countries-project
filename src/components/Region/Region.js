@@ -13,7 +13,6 @@ const Region = (props) => {
       const response = await fetch(url);
       const data = await response.json();
       setCountries(data);
-      console.log(data);
       setIsLoading(false);
     } catch (error) {
       alert(error.message);
@@ -33,6 +32,7 @@ const Region = (props) => {
           name={country.name}
           flag={country.flag}
           capital={country.capital}
+          region={props.region}
         />
       ))}
     </div>

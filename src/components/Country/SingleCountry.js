@@ -1,13 +1,16 @@
 import classes from "./SingleCountry.module.css";
 
 import React from "react";
+import { Link } from "react-router-dom";
 
 const SingleCountry = (props) => {
   return (
     <div>
       <h1>{props.name}</h1>
       <h3>{props.capital}</h3>
-      <img src={props.flag} alt="" />
+      <Link to={`/${props.name}`}>
+        <img src={props.flag} alt="" />
+      </Link>
     </div>
   );
 };

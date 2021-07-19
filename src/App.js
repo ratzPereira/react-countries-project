@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import SingleCountry from "./components/Country/SingleCountry";
 import Header from "./Layout/Header";
 import Region from "./components/Region/Region";
+import CountryDetails from "./components/Country/CountryDetails";
 
 function App() {
   return (
@@ -27,7 +28,9 @@ function App() {
         <Route path="/oceania">
           <Region region="oceania">Oceania</Region>
         </Route>
-        <Route path="/country/:name" children={<SingleCountry />} />
+        <Route path="/:name" children={<SingleCountry />}>
+          <CountryDetails />
+        </Route>
       </Switch>
     </>
   );
