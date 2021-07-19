@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import SingleCountry from "../Country/SingleCountry";
+import classes from "./Region.module.css";
 
 const Region = (props) => {
   const url = `https://restcountries.eu/rest/v2/region/${props.region}`;
@@ -24,9 +25,9 @@ const Region = (props) => {
   }, [url]);
 
   return (
-    <div>
+    <div className={classes.region}>
       <h1>Existing Countries in {props.children}</h1>
-      {isLoading && <p>Loading Countries...</p>}
+      {isLoading && <div className="loading"> </div>}
       {countries.map((country) => (
         <SingleCountry
           name={country.name}
