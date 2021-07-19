@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const SingleCountry = (props) => {
   return (
-    <div>
+    <div className={classes.singleCountry}>
       <h1>{props.name}</h1>
       <h3>{props.capital}</h3>
       <Link to={`/${props.name}`}>

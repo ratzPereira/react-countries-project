@@ -1,0 +1,17 @@
+.singleCountry {
+    width: 90vw;
+    max-width: 1170px;
+    margin: 4rem auto;
+    display: grid;
+    gap: 2rem;
+}
+.singleCountry img {
+    width: 220px;
+    display: block;
+}
+.singleCountry p {
+    max-width: 35em;
+    font-size: 1.2rem;
+    margin-top: 1.5rem;
+    line-height: 1.8;
+}
