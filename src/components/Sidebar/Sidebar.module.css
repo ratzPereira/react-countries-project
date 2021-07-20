@@ -9,3 +9,14 @@
     background-color: rgb(255, 255, 255);
     transition: 0.8s ease;
 }
+
+.button{
+    display: inline-block;
+    justify-content: space-between;
+    margin-left: 10px;
+}
+
+.parag {
+    display: inline-block;
+    justify-content: space-between;
+}

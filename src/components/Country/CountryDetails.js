@@ -23,7 +23,7 @@ const CountryDetails = () => {
   }
 
   const backToHomeHandler = () => {
-    history.replace("/");
+    history.goBack();
   };
 
   const addToFavourite = () => {

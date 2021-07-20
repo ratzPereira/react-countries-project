@@ -10,9 +10,9 @@ import Sidebar from "../Sidebar/Sidebar";
 const Region = (props) => {
   const url = `https://restcountries.eu/rest/v2/region/${props.region}`;
 
-  const filteredCountries = useSelector(
-    (state) => state.countryList.searchedCountries
-  );
+  const countries = useSelector((state) => state.countryList.countries);
+
+  const [filtered, setFiltered] = useState([]);
 
   const { data, error, isLoading } = useFetch(url);
 
@@ -20,20 +20,33 @@ const Region = (props) => {
 
   useEffect(() => {
     dispatch(countryListActions.addMoviesToList(data));
-    dispatch(countryListActions.searchFieldValue(data));
+    setFiltered(data);
   }, [data]);
 
   if (error) {
     alert(error.message);
   }
 
+  const getValueHandler = (value) => {
+    console.log("The value is " + value);
+    findCountries(value);
+  };
+
+  const findCountries = (value) => {
+    setFiltered(
+      countries.filter((country) =>
+        country.name.toLowerCase().startsWith(value.toLowerCase())
+      )
+    );
+  };
+  console.log(countries);
   return (
     <div className={classes.region}>
-      <SearchForm />
+      <SearchForm getValue={getValueHandler} numberOfResults={filtered} />
       <Sidebar />
       <h1>Existing Countries in {props.children}</h1>
       {isLoading && <div className="loading"> </div>}
-      {filteredCountries.map((country) => (
+      {filtered.map((country) => (
         <SingleCountry
           name={country.name}
           flag={country.flag}

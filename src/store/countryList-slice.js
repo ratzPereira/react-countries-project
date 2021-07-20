@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialCountryListState = {
   countries: [],
-  searchedCountries: [],
   favourites: [],
 };
 
@@ -12,9 +11,6 @@ const countryListSlice = createSlice({
   reducers: {
     addMoviesToList(state, action) {
       state.countries = action.payload;
-    },
-    searchFieldValue(state, action) {
-      state.searchedCountries = action.payload;
     },
     addToFavorite(state, action) {
       state.favourites.push(action.payload);

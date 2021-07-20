@@ -1,4 +1,4 @@
-import React from "react";
+import classes from "./Sidebar.module.css";
 import { Link } from "react-router-dom";
 
 const SidebarField = (props) => {
@@ -6,8 +6,9 @@ const SidebarField = (props) => {
   return (
     <div>
       <Link to={`/${props.name}`}>
-        <p>{props.name}</p>
+        <p className={classes.parag}>{props.name}</p>
       </Link>
+      <button className={classes.button}>remove</button>
     </div>
   );
 };
