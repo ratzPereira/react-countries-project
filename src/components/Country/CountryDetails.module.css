@@ -1,0 +1,22 @@
+.button {
+    font-size: 16px;
+    letter-spacing: 2px;
+    font-weight: 400 !important;
+    background-color: #3950e6;
+    color: #fff;
+    padding: 23px 50px;
+    margin: auto;
+    text-align: center;
+    display: block;
+    text-decoration: none;
+    border: 0;
+    width: max-content;
+    cursor: pointer;
+    transition: all 0.3s 0s ease-in-out;
+}
+
+.button:hover {
+    transform: scale(1.04, 1);
+    background-color: rgb(7, 31, 31);
+    text-decoration: none;
+}

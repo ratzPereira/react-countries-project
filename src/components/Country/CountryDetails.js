@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import DetailedCountry from "./DetailedCountry";
 import useFetch from "../../hooks/use-fetch";
+import classes from "./CountryDetails.module.css";
 
 const CountryDetails = () => {
   const params = useParams();
+  const history = useHistory();
   const url = `https://restcountries.eu/rest/v2/name/${params.name}?fullText=true`;
 
   const { data, error, isLoading } = useFetch(url);
@@ -28,20 +30,29 @@ const CountryDetails = () => {
     alert(error.message);
   }
 
+  const backToHomeHandler = () => {
+    history.replace("/");
+  };
+
   return (
-    <div>
-      {isLoading && <div className="loading"> </div>}
-      {data.map((country) => (
-        <DetailedCountry
-          name={country.name}
-          flag={country.flag}
-          capital={country.capital}
-          region={country.region}
-          population={country.population}
-          language={country.languages[0].name}
-        />
-      ))}
-    </div>
+    <>
+      <div>
+        {isLoading && <div className="loading"> </div>}
+        {data.map((country) => (
+          <DetailedCountry
+            name={country.name}
+            flag={country.flag}
+            capital={country.capital}
+            region={country.region}
+            population={country.population}
+            language={country.languages[0].name}
+          />
+        ))}
+      </div>
+      <button className={classes.button} onClick={backToHomeHandler}>
+        back
+      </button>
+    </>
   );
 };
 
