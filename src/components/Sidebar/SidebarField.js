@@ -5,7 +5,7 @@ const SidebarField = (props) => {
   console.log(props);
   return (
     <div>
-      <Link to={`/:${props.name}`}>
+      <Link to={`/${props.name}`}>
         <p>{props.name}</p>
       </Link>
     </div>
