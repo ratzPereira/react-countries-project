@@ -1,0 +1,22 @@
+.searchForm {
+    width: 90vw;
+    max-width: var(--max-width);
+    margin: 5rem auto 3rem;
+}
+.formInput {
+    width: 100%;
+    border: transparent;
+    max-width: 400px;
+    background: white;
+    padding: 1rem;
+    font-size: 1rem;
+    border-radius: var(--radius);
+    color: black;
+    letter-spacing: var(--spacing);
+}
+
+.formText {
+   color: white;
+    font-size: larger;
+    font-weight: bold;
+}
