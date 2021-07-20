@@ -1,29 +1,37 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import DetailedCountry from "./DetailedCountry";
+import useFetch from "../../hooks/use-fetch";
 
 const CountryDetails = () => {
   const params = useParams();
-  const [county, setCountry] = useState([]);
   const url = `https://restcountries.eu/rest/v2/name/${params.name}?fullText=true`;
 
-  const fetchCountry = async (url) => {
-    try {
-      const response = await fetch(url);
-      const data = await response.json();
-      setCountry(data);
-    } catch (error) {
-      alert(error.message);
-    }
-  };
+  const { data, error, isLoading } = useFetch(url);
+  // const [county, setCountry] = useState([]);
+  //
+  // const fetchCountry = async (url) => {
+  //   try {
+  //     const response = await fetch(url);
+  //     const data = await response.json();
+  //     setCountry(data);
+  //   } catch (error) {
+  //     alert(error.message);
+  //   }
+  // };
+  //
+  // useEffect(() => {
+  //   fetchCountry(url);
+  // }, [url]);
 
-  useEffect(() => {
-    fetchCountry(url);
-  }, [url]);
+  if (error) {
+    alert(error.message);
+  }
 
   return (
     <div>
-      {county.map((country) => (
+      {isLoading && <div className="loading"> </div>}
+      {data.map((country) => (
         <DetailedCountry
           name={country.name}
           flag={country.flag}
