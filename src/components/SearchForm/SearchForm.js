@@ -14,7 +14,6 @@ const SearchForm = () => {
 
   const searchFieldInputHandler = (event) => {
     setValueInput(event.target.value);
-    console.log(valueInput);
     findCountries(valueInput);
   };
 
@@ -28,8 +27,6 @@ const SearchForm = () => {
   useEffect(() => {
     findCountries(valueInput);
   }, [valueInput]);
-  console.log(filteredCountries);
-  console.log(countries);
 
   return (
     <form className={classes.searchForm} onSubmit={(e) => e.preventDefault()}>
@@ -40,6 +37,9 @@ const SearchForm = () => {
         onChange={searchFieldInputHandler}
         className={classes.formInput}
       />
+      {filteredCountries.length === 0 && (
+        <div className={classes.error}>Country not found</div>
+      )}
     </form>
   );
 };

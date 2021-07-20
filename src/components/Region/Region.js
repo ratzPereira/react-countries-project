@@ -9,7 +9,6 @@ import { countryListActions } from "../../store/countryList-slice";
 const Region = (props) => {
   const url = `https://restcountries.eu/rest/v2/region/${props.region}`;
 
-  const countries = useSelector((state) => state.countryList.countries);
   const filteredCountries = useSelector(
     (state) => state.countryList.searchedCountries
   );
@@ -39,6 +38,7 @@ const Region = (props) => {
 
   useEffect(() => {
     dispatch(countryListActions.addMoviesToList(data));
+    dispatch(countryListActions.searchFieldValue(data));
   }, [data]);
 
   if (error) {
@@ -47,7 +47,7 @@ const Region = (props) => {
 
   return (
     <div className={classes.region}>
-      <SearchForm country={data} />
+      <SearchForm />
       <h1>Existing Countries in {props.children}</h1>
       {isLoading && <div className="loading"> </div>}
       {filteredCountries.map((country) => (
