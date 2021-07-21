@@ -10,6 +10,8 @@ const CountryDetails = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
+  const favouriteList = useSelector((state) => state.countryList.favorites);
+
   const europeCountries = useSelector(
     (state) => state.countryList.europeCountries
   );
@@ -25,6 +27,7 @@ const CountryDetails = (props) => {
     (state) => state.countryList.oceaniaCountries
   );
   const [regionCountries, setRegionCountries] = useState([]);
+  const [clicked, setClicked] = useState(false);
 
   useEffect(() => {
     if (props.region === "europe")
@@ -54,7 +57,8 @@ const CountryDetails = (props) => {
   };
 
   const addToFavourite = () => {
-    dispatch(countryListActions.addToFavorite(regionCountries));
+    setClicked(true);
+    dispatch(countryListActions.addToFavorite({ name: regionCountries.name }));
   };
 
   return (
@@ -71,9 +75,11 @@ const CountryDetails = (props) => {
           />
         }
       </div>
-      <button className={classes.button} onClick={addToFavourite}>
-        Add to Fav
-      </button>
+      {!clicked && (
+        <button className={classes.button} onClick={addToFavourite}>
+          Add to Fav
+        </button>
+      )}
       <button className={classes.button} onClick={backToHomeHandler}>
         back
       </button>

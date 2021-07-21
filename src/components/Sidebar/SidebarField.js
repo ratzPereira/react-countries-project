@@ -8,11 +8,12 @@ const SidebarField = (props) => {
 
   const removeFromFavorite = () => {
     const countryToRemove = favouriteList.find((country) => {
-      if (country.name === props.name) return country.name;
+      console.log(country);
+      console.log(props.name);
+      if (country === props.name) return country;
     });
-    dispatch(
-      countryListActions.removeFromFavorite({ name: countryToRemove.name })
-    );
+    console.log(countryToRemove);
+    dispatch(countryListActions.removeFromFavorite(countryToRemove));
   };
 
   return (

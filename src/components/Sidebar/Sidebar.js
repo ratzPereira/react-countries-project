@@ -10,7 +10,7 @@ const Sidebar = () => {
     <div className={classes.sidebar}>
       {favouriteList.length !== 0 && <p>Countries that I must visit:</p>}
       {favouriteList.map((e) => (
-        <SidebarField key={e.name} name={e.name} />
+        <SidebarField key={e} name={e} />
       ))}
     </div>
   );

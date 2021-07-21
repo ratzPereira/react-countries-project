@@ -29,12 +29,18 @@ const countryListSlice = createSlice({
       state.americaCountries = action.payload;
     },
     addToFavorite(state, action) {
-      state.favorites.push(action.payload);
+      if (state.favorites.length === 0) {
+        state.favorites.push(action.payload.name);
+      } else {
+        const alreadyExist = state.favorites.find(
+          (country) => country === action.payload.name
+        );
+        if (!alreadyExist) state.favorites.push(action.payload.name);
+      }
     },
     removeFromFavorite(state, action) {
       state.favorites.map((country, index) => {
-        console.log(country.name + action.payload.name);
-        if (country.name === action.payload.name) {
+        if (country === action.payload) {
           state.favorites.splice(index, 1);
         }
       });
