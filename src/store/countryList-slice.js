@@ -1,22 +1,43 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialCountryListState = {
-  countries: [],
-  favourites: [],
+  africaCountries: [],
+  americaCountries: [],
+  asiaCountries: [],
+  oceaniaCountries: [],
+  europeCountries: [],
+  favorites: [],
 };
 
 const countryListSlice = createSlice({
   name: "countryList",
   initialState: initialCountryListState,
   reducers: {
-    addMoviesToList(state, action) {
-      state.countries = action.payload;
+    addEuropeCountriesToList(state, action) {
+      state.europeCountries = action.payload;
+    },
+    addAsiaCountriesToList(state, action) {
+      state.asiaCountries = action.payload;
+    },
+    addAfricaCountriesToList(state, action) {
+      state.africaCountries = action.payload;
+    },
+    addOceaniaCountriesToList(state, action) {
+      state.oceaniaCountries = action.payload;
+    },
+    addAmericaCountriesToList(state, action) {
+      state.americaCountries = action.payload;
     },
     addToFavorite(state, action) {
-      state.favourites.push(action.payload);
+      state.favorites.push(action.payload);
     },
     removeFromFavorite(state, action) {
-      state.favourites.slice(action.payload);
+      state.favorites.map((country, index) => {
+        console.log(country.name + action.payload.name);
+        if (country.name === action.payload.name) {
+          state.favorites.splice(index, 1);
+        }
+      });
     },
   },
 });

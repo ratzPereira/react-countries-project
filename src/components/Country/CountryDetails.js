@@ -1,49 +1,75 @@
-import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import DetailedCountry from "./DetailedCountry";
-import useFetch from "../../hooks/use-fetch";
 import classes from "./CountryDetails.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { countryListActions } from "../../store/countryList-slice";
+import { useEffect, useState } from "react";
 
-const CountryDetails = () => {
+const CountryDetails = (props) => {
   const params = useParams();
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const url = `https://restcountries.eu/rest/v2/name/${params.name}?fullText=true`;
+  const europeCountries = useSelector(
+    (state) => state.countryList.europeCountries
+  );
+  const asiaCountries = useSelector((state) => state.countryList.asiaCountries);
 
-  const { data, error, isLoading } = useFetch(url);
+  const africaCountries = useSelector(
+    (state) => state.countryList.africaCountries
+  );
+  const americaCountries = useSelector(
+    (state) => state.countryList.americaCountries
+  );
+  const oceaniaCountries = useSelector(
+    (state) => state.countryList.oceaniaCountries
+  );
+  const [regionCountries, setRegionCountries] = useState([]);
 
-  const favouriteList = useSelector((state) => state.countryList.favourites);
-
-  if (error) {
-    alert(error.message);
-    return;
-  }
+  useEffect(() => {
+    if (props.region === "europe")
+      setRegionCountries(
+        europeCountries.find((country) => country.name === params.name)
+      );
+    if (props.region === "asia")
+      setRegionCountries(
+        asiaCountries.find((country) => country.name === params.name)
+      );
+    if (props.region === "americas")
+      setRegionCountries(
+        americaCountries.find((country) => country.name === params.name)
+      );
+    if (props.region === "oceania")
+      setRegionCountries(
+        oceaniaCountries.find((country) => country.name === params.name)
+      );
+    if (props.region === "africa")
+      setRegionCountries(
+        africaCountries.find((country) => country.name === params.name)
+      );
+  }, [props.region]);
 
   const backToHomeHandler = () => {
     history.goBack();
   };
 
   const addToFavourite = () => {
-    dispatch(countryListActions.addToFavorite(data));
+    dispatch(countryListActions.addToFavorite(regionCountries));
   };
 
   return (
     <>
       <div>
-        {isLoading && <div className="loading"> </div>}
-        {data.map((country) => (
+        {
           <DetailedCountry
-            name={country.name}
-            flag={country.flag}
-            capital={country.capital}
-            region={country.region}
-            population={country.population}
-            language={country.languages[0].name}
+            key={regionCountries.name}
+            name={regionCountries.name}
+            flag={regionCountries.flag}
+            capital={regionCountries.capital}
+            region={regionCountries.region}
+            population={regionCountries.population}
           />
-        ))}
+        }
       </div>
       <button className={classes.button} onClick={addToFavourite}>
         Add to Fav

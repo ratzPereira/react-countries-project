@@ -5,8 +5,15 @@ import Header from "./Layout/Header";
 import Region from "./components/Region/Region";
 import CountryDetails from "./components/Country/CountryDetails";
 import ErrorPage from "./pages/ErrorPage";
+import { useState } from "react";
 
 function App() {
+  const [region, setRegion] = useState();
+
+  const getCurrentRegion = (region) => {
+    setRegion(region);
+  };
+
   return (
     <>
       <Header />
@@ -15,22 +22,32 @@ function App() {
           <HomePage />
         </Route>
         <Route path="/africa">
-          <Region region="africa">Africa</Region>
+          <Region region="africa" regionHandler={getCurrentRegion}>
+            Africa
+          </Region>
         </Route>
         <Route path="/americas">
-          <Region region="americas">Americas</Region>
+          <Region region="americas" regionHandler={getCurrentRegion}>
+            Americas
+          </Region>
         </Route>
         <Route path="/asia">
-          <Region region="asia">Asia</Region>
+          <Region region="asia" regionHandler={getCurrentRegion}>
+            Asia
+          </Region>
         </Route>
         <Route path="/europe">
-          <Region region="europe">Europe</Region>
+          <Region region="europe" regionHandler={getCurrentRegion}>
+            Europe
+          </Region>
         </Route>
         <Route path="/oceania">
-          <Region region="oceania">Oceania</Region>
+          <Region region="oceania" regionHandler={getCurrentRegion}>
+            Oceania
+          </Region>
         </Route>
         <Route path="/:name" children={<SingleCountry />}>
-          <CountryDetails />
+          <CountryDetails region={region} />
         </Route>
         <Route path="*">
           <ErrorPage />

@@ -1,14 +1,26 @@
 import classes from "./Sidebar.module.css";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { countryListActions } from "../../store/countryList-slice";
 
 const SidebarField = (props) => {
-  console.log(props);
+  const favouriteList = useSelector((state) => state.countryList.favorites);
+  const dispatch = useDispatch();
+
+  const removeFromFavorite = () => {
+    const countryToRemove = favouriteList.find((country) => {
+      if (country.name === props.name) return country.name;
+    });
+    dispatch(
+      countryListActions.removeFromFavorite({ name: countryToRemove.name })
+    );
+  };
+
   return (
     <div>
-      <Link to={`/${props.name}`}>
-        <p className={classes.parag}>{props.name}</p>
-      </Link>
-      <button className={classes.button}>remove</button>
+      <p className={classes.parag}>{props.name}</p>
+      <button className={classes.button} onClick={removeFromFavorite}>
+        remove
+      </button>
     </div>
   );
 };
