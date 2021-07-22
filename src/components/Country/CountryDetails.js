@@ -30,6 +30,7 @@ const CountryDetails = (props) => {
   const [clicked, setClicked] = useState(false);
 
   useEffect(() => {
+    checkIfAlreadyInFavList();
     if (props.region === "europe")
       setRegionCountries(
         europeCountries.find((country) => country.name === params.name)
@@ -50,10 +51,16 @@ const CountryDetails = (props) => {
       setRegionCountries(
         africaCountries.find((country) => country.name === params.name)
       );
-  }, [props.region]);
+  }, [props.region, clicked]);
 
   const backToHomeHandler = () => {
     history.goBack();
+  };
+
+  const checkIfAlreadyInFavList = () => {
+    setClicked(
+      favouriteList.find((country) => country === regionCountries.name)
+    );
   };
 
   const addToFavourite = () => {
