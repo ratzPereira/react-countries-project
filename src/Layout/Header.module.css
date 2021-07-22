@@ -38,3 +38,8 @@
 .header a:hover {
     color: black;
 }
+
+.favorite{
+    font-size: 1.5rem;
+    color: #0d503c
+}

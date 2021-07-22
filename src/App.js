@@ -6,6 +6,7 @@ import Region from "./components/Region/Region";
 import CountryDetails from "./components/Country/CountryDetails";
 import ErrorPage from "./pages/ErrorPage";
 import { useState } from "react";
+import FavoritePage from "./pages/FavoritePage";
 
 function App() {
   const [region, setRegion] = useState();
@@ -20,6 +21,9 @@ function App() {
       <Switch>
         <Route path="/" exact>
           <HomePage />
+        </Route>
+        <Route path="/favorite" exact>
+          <FavoritePage />
         </Route>
         <Route path="/africa">
           <Region region="africa" regionHandler={getCurrentRegion}>

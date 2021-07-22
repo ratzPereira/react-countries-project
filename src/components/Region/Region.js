@@ -81,7 +81,6 @@ const Region = (props) => {
   return (
     <div className={classes.region}>
       <SearchForm getValue={getValueHandler} numberOfResults={filtered} />
-      <Sidebar />
       <h1>Existing Countries in {props.children}</h1>
       {isLoading && <div className="loading"> </div>}
       {filtered.map((country) => (
