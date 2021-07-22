@@ -42,12 +42,6 @@ const countryListSlice = createSlice({
       state.favorites = state.favorites.filter(
         (country) => country !== action.payload
       );
-      // console.log(countryToRemove);
-      // state.favorites.map((country, index) => {
-      //   if (country === action.payload) {
-      //     state.favorites.splice(index, 1);
-      //   }
-      // });
     },
   },
 });

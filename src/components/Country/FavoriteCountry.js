@@ -1,5 +1,5 @@
 import React from "react";
-import classes from "../Sidebar/Sidebar.module.css";
+import classes from "./FavoriteCountry.module.css";
 import { countryListActions } from "../../store/countryList-slice";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -19,7 +19,7 @@ function FavoriteCountry(props) {
 
   return (
     <ul>
-      <li>{props.name}</li>
+      <li className={classes.country}>{props.name}</li>
       <button className={classes.button} onClick={removeFromFavorite}>
         remove
       </button>

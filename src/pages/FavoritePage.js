@@ -22,7 +22,7 @@ const FavoritePage = () => {
   return (
     <div>
       <SearchForm getValue={getValueHandler} numberOfResults={filtered} />
-      <h1>Your List of Countries to Visit!</h1>
+      <h1 className="centered">Your List of Countries to Visit!</h1>
       {filtered.map((country) => (
         <FavoriteCountry name={country} key={country} />
       ))}
